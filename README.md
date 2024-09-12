@@ -24,7 +24,7 @@
 ```
 SELECT distinct (sum(index_length) over () / sum(data_length) over () * 100) as percent_all
 FROM INFORMATION_SCHEMA.TABLES
-where table_type = 'BASE TABLE' and table_schema = 'sakila';
+WHERE table_type = 'BASE TABLE' and table_schema = 'sakila';
 ```
 
 ### Задание 2
