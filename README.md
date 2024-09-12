@@ -46,7 +46,7 @@ select distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (part
 from payment p, rental r, customer c, inventory i, film f
 where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id
 ```
-![alt text](https://github.com/IvanOzhigov/12-03-hw/blob/main/1-1.png)
+![alt text](https://github.com/IvanOzhigov/12-05-hw/blob/main/1-1.png)
 
 ```
 explain analyze 
@@ -57,7 +57,7 @@ LEFT join rental r on p.payment_date = r.rental_date
 WHERE p.payment_date between '2005-07-30 00:00:00' and '2005-07-30 23:59:59'
 GROUP by 1;
 ```
-![alt text](https://github.com/IvanOzhigov/12-03-hw/blob/main/1-1.png)
+![alt text](https://github.com/IvanOzhigov/12-05-hw/blob/main/1-1.png)
 
 
 ## Дополнительные задания (со звёздочкой*)
