@@ -19,6 +19,14 @@
 
 Напишите запрос к учебной базе данных, который вернёт процентное отношение общего размера всех индексов к общему размеру всех таблиц.
 
+## Ответ 
+
+```
+SELECT distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (partition by c.customer_id, f.title)
+FROM payment p, rental r, customer c, inventory i, film f
+WHERE date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id;
+```
+
 ### Задание 2
 
 Выполните explain analyze следующего запроса:
@@ -29,6 +37,28 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 ```
 - перечислите узкие места;
 - оптимизируйте запрос: внесите корректировки по использованию операторов, при необходимости добавьте индексы.
+
+## Ответ
+
+```
+explain analyze
+select distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (partition by c.customer_id, f.title)
+from payment p, rental r, customer c, inventory i, film f
+where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id
+```
+![alt text](https://github.com/IvanOzhigov/12-03-hw/blob/main/1-1.png)
+
+```
+explain analyze 
+SELECT concat(c.last_name, ' ', c.first_name) as fio, sum(p.amount)
+FROM payment p
+LEFT join customer c on p.customer_id = c.customer_id
+LEFT join rental r on p.payment_date = r.rental_date 
+WHERE p.payment_date between '2005-07-30 00:00:00' and '2005-07-30 23:59:59'
+GROUP by 1;
+```
+![alt text](https://github.com/IvanOzhigov/12-03-hw/blob/main/1-1.png)
+
 
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
