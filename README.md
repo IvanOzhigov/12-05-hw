@@ -48,6 +48,8 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 ```
 ![alt text](https://github.com/IvanOzhigov/12-05-hw/blob/main/1-1.png)
 
+
+Узкие места: большое время выполнения и 642 тысячи строк анализируемых данных. 
 ```
 explain analyze 
 SELECT concat(c.last_name, ' ', c.first_name) as fio, sum(p.amount)
