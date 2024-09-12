@@ -57,7 +57,7 @@ LEFT join rental r on p.payment_date = r.rental_date
 WHERE p.payment_date between '2005-07-30 00:00:00' and '2005-07-30 23:59:59'
 GROUP by 1;
 ```
-![alt text](https://github.com/IvanOzhigov/12-05-hw/blob/main/1-1.png)
+![alt text](https://github.com/IvanOzhigov/12-05-hw/blob/main/1-3.png)
 
 
 ## Дополнительные задания (со звёздочкой*)
