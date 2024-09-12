@@ -22,9 +22,9 @@
 ## Ответ 
 
 ```
-SELECT distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (partition by c.customer_id, f.title)
-FROM payment p, rental r, customer c, inventory i, film f
-WHERE date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id;
+SELECT distinct (sum(index_length) over () / sum(data_length) over () * 100) as percent_all
+FROM INFORMATION_SCHEMA.TABLES
+where table_type = 'BASE TABLE' and table_schema = 'sakila';
 ```
 
 ### Задание 2
